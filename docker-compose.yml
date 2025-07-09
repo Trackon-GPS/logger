@@ -4,7 +4,7 @@ services:
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter
-    restart: unless-stopped
+    restart: always  
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
@@ -20,7 +20,7 @@ services:
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
-    restart: unless-stopped
+    restart: always  
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
@@ -35,7 +35,7 @@ services:
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
-    restart: unless-stopped
+    restart: always  
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
