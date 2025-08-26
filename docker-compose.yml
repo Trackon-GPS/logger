@@ -44,6 +44,19 @@ services:
     networks:
       - monitoring
 
+  apache-exporter:
+    image: bitnami/apache-exporter:latest
+    container_name: apache-exporter
+    restart: always
+    command:
+      - '--scrape_uri=http://host.docker.internal/server-status?auto'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - monitoring
+    expose:
+      - 9117
+
 volumes:
   prometheus-data:
 
